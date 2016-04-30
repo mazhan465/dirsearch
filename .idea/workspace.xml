@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e9c62b2-2f29-49f6-a778-143854ae05ac" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/200_blacklist.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/output/CLIOutput.py" afterPath="$PROJECT_DIR$/lib/output/CLIOutput.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/controller/Controller.py" afterPath="$PROJECT_DIR$/lib/controller/Controller.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/core/Dictionary.py" afterPath="$PROJECT_DIR$/lib/core/Dictionary.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/core/Fuzzer.py" afterPath="$PROJECT_DIR$/lib/core/Fuzzer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/connection/Requester.py" afterPath="$PROJECT_DIR$/lib/connection/Requester.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/dicc.txt" afterPath="$PROJECT_DIR$/db/dicc.txt" />
-    </list>
+    <list default="true" id="3e9c62b2-2f29-49f6-a778-143854ae05ac" name="Default" comment="" />
     <ignored path="dirsearch.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -75,8 +67,8 @@
       <file leaf-file-name="CLIOutput.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/output/CLIOutput.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4">
-              <caret line="84" column="77" selection-start-line="84" selection-start-column="77" selection-end-line="84" selection-end-column="77" />
+            <state vertical-scroll-proportion="0.6704918">
+              <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -509,22 +501,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/logs/errors-16-04-29_12-55-58.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/DO_NOT_DELETE_THIS_FOLDER.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/default.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5">
@@ -655,8 +631,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/output/CLIOutput.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4">
-          <caret line="84" column="77" selection-start-line="84" selection-start-column="77" selection-end-line="84" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.6704918">
+          <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
           <folding />
         </state>
       </provider>
