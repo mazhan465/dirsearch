@@ -24,12 +24,13 @@ from thirdparty.oset import *
 
 class Dictionary(object):
 
-    def __init__(self, path, extensions, lowercase=False):
+    def __init__(self, url, path, extensions, lowercase=False):
         self.entries = []
         self.currentIndex = 0
         self.condition = threading.Lock()
         self._extensions = extensions
         self._path = path
+        self.url = url[0]
         self.lowercase = lowercase
         self.dictionaryFile = File(self.path)
         self.generate(lowercase=self.lowercase)
@@ -57,6 +58,16 @@ class Dictionary(object):
 
     def generate(self, lowercase=False):
         self.entries = []
+        target = self.url
+        hostuser = target.split('.')
+        mainhost = hostuser[len(hostuser)-2]
+        subhost = hostuser[len(hostuser)-3]
+        #print(mainhost+':'+subhost)
+        bak =  ['/'+mainhost+'.rar','/'+mainhost+'.zip','/'+mainhost+mainhost+'.rar','/'+mainhost+'.rar','/'+mainhost+'.tar.gz','/'+mainhost+'.tar','/'+mainhost+'123.zip','/'+mainhost+'123.tar.gz','/'+mainhost+mainhost+'.zip','/'+mainhost+mainhost+'.tar.gz','/'+mainhost+mainhost+'.tar','/'+mainhost+'.bak']
+        bak1 =  ['/'+subhost+'.rar','/'+subhost+'.zip','/'+subhost+subhost+'.rar','/'+subhost+'.rar','/'+subhost+'.tar.gz','/'+subhost+'.tar','/'+subhost+'123.zip','/'+subhost+'123.tar.gz','/'+subhost+subhost+'.zip','/'+subhost+subhost+'.tar.gz','/'+subhost+subhost+'.tar','/'+subhost+'.bak']
+        baks = bak+bak1
+        #print(baks)
+        self.entries = self.entries+baks
         for line in self.dictionaryFile.getLines():
             # Skip comments
             entry = line
@@ -67,6 +78,7 @@ class Dictionary(object):
             else:
                 quote = self.quote(line)
                 self.entries.append(quote)
+                #print(self.entries)
         if lowercase == True:
             self.entries = list(oset([entry.lower() for entry in self.entries]))
 

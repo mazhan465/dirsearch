@@ -77,8 +77,9 @@ class Controller(object):
         self.directories = Queue()
         self.excludeSubdirs = (arguments.excludeSubdirs if arguments.excludeSubdirs is not None else [])
         self.output.header(PROGRAM_BANNER)
-        self.dictionary = Dictionary(self.arguments.wordlist, self.arguments.extensions,
+        self.dictionary = Dictionary(self.arguments.urlList,self.arguments.wordlist, self.arguments.extensions,
                                      self.arguments.lowercase)
+        #print(self.dictionary)
         self.printConfig()
         self.errorLog = None
         self.errorLogPath = None
@@ -98,6 +99,7 @@ class Controller(object):
                     gc.collect()
                     self.reportManager = ReportManager()
                     self.currentUrl = url
+                    #print("This is target"+url)
                     self.output.target(self.currentUrl)
                     try:
                         self.requester = Requester(url, cookie=self.arguments.cookie,
@@ -115,8 +117,10 @@ class Controller(object):
                         self.requester.setHeader(key, value)
                     # Initialize directories Queue with start Path
                     self.basePath = self.requester.basePath
+                    #print(self.basePath)
                     if self.arguments.scanSubdirs is not None:
                         for subdir in self.arguments.scanSubdirs:
+                            #self.output.warning(subdir)
                             self.directories.put(subdir)
                     else:
                         self.directories.put('')
@@ -124,6 +128,7 @@ class Controller(object):
                     matchCallbacks = [self.matchCallback]
                     notFoundCallbacks = [self.notFoundCallback]
                     errorCallbacks = [self.errorCallback, self.appendErrorLog]
+                    #print(self.requester)
                     self.fuzzer = Fuzzer(self.requester, self.dictionary, testFailPath=self.arguments.testFailPath,
                                          threads=self.arguments.threadsCount, matchCallbacks=matchCallbacks,
                                          notFoundCallbacks=notFoundCallbacks, errorCallbacks=errorCallbacks)
@@ -158,7 +163,7 @@ class Controller(object):
 
     def getBlacklists(self):
         blacklists = {}
-        for status in [400, 403, 500]:
+        for status in [200, 400, 403, 500]:
             blacklistFileName = FileUtils.buildPath(self.script_path, 'db')
             blacklistFileName = FileUtils.buildPath(blacklistFileName, '{}_blacklist.txt'.format(status))
             if not FileUtils.canRead(blacklistFileName):
@@ -250,7 +255,7 @@ class Controller(object):
             if path.status not in self.excludeStatusCodes and (
                             self.blacklists.get(path.status) is None or path.path not in self.blacklists.get(
                         path.status)):
-                self.output.statusReport(path.path, path.response)
+                self.output.statusReport(self.currentUrl,path.path, path.response)
                 self.addDirectory(path.path)
                 self.reportManager.addPath(self.currentDirectory + path.path, path.status, path.response)
                 self.reportManager.save()
@@ -319,17 +324,21 @@ class Controller(object):
             self.currentDirectory = self.directories.get()
             self.output.warning('[{1}] Starting: {0}'.format(self.currentDirectory, time.strftime('%H:%M:%S')))
             self.fuzzer.requester.basePath = self.basePath + self.currentDirectory
+            #print(self.fuzzer.requester.basePath)
             self.output.basePath = self.basePath + self.currentDirectory
+            #print(self.currentDirectory)
             self.fuzzer.start()
             self.processPaths()
         return
 
     def addDirectory(self, path):
+        #print(self.excludeSubdirs)
         if not self.recursive:
             return False
         if path.endswith('/'):
             if path in [directory + '/' for directory in self.excludeSubdirs]:
                 return False
+            #print(self.currentDirectory+path)
             self.directories.put(self.currentDirectory + path)
             return True
         else:

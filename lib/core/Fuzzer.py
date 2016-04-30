@@ -29,6 +29,7 @@ class Fuzzer(object):
                  errorCallbacks=[]):
 
         self.requester = requester
+        #print(self.requester)
         self.dictionary = dictionary
         self.testFailPath = testFailPath
         self.basePath = self.requester.basePath

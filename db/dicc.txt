@@ -344,7 +344,6 @@
 .sass-cache/
 .selected_editor
 .server-info/
-.server-status/
 .sessions
 .settings
 .settings.php.swp
@@ -4475,8 +4474,6 @@ seoadmin
 serial
 serv-u.ini
 server-info
-server-status
-server-status/
 server.cfg
 server.log
 server.xml

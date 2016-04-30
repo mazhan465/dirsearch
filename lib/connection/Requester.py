@@ -111,11 +111,13 @@ class Requester(object):
                     url += "/"
                 if path.startswith('/'):
                     path = path[1:]
+                    #print(path)
                 url += path
 
                 headers = dict(self.headers)
                 if self.randomAgents is not None:
                     headers["User-agent"] = random.choice(self.randomAgents)
+                #print(url)
                 response = requests.get(url, proxies=proxy, verify=False, allow_redirects=self.redirect, \
                                         headers=headers, timeout=self.timeout)
                 result = Response(response.status_code, response.reason, response.headers, response.content)
