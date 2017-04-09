@@ -62,7 +62,11 @@ class Requester(object):
             self.ip = ip
         else:
             try:
-                self.ip = socket.gethostbyname(self.host)
+                is_ip=re.search(r'^%d\.%d\.%d\.%d$')
+                if is_ip:
+                    self.ip=is_ip
+                else:
+                    self.ip = socket.gethostbyname(self.host)
             except socket.gaierror:
                 raise RequestException({'message': "Couldn't resolve DNS"})
         self.headers['Host'] = self.host
